@@ -2,3 +2,6 @@
 */obj
 *.user
 *.suo
+*.db
+web.debug.config
+web.release.config
