@@ -51,8 +51,11 @@
                 if (!portal) { // If both are still visible then reset the first one
                     portal = this.portals.getAt(0);
                 }
+                
+                // Reposition recycled item to the end of the group
                 this.portals.remove(portal, false);
                 this.portals.add(portal);
+
                 portal.resetPosition(this.game.input.x, this.game.input.y);
             }
         }
