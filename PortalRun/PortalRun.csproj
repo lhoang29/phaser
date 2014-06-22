@@ -20,6 +20,7 @@
     <Content Include="app.css" />
     <Content Include="assets\background.png" />
     <Content Include="assets\dude.png" />
+    <Content Include="assets\portal.png" />
     <Content Include="assets\spikes.png" />
     <Content Include="index.html" />
     <Content Include="phaser.js" />
@@ -33,6 +34,7 @@
     <TypeScriptCompile Include="GameOver.ts" />
     <TypeScriptCompile Include="MainMenu.ts" />
     <TypeScriptCompile Include="phaser.d.ts" />
+    <TypeScriptCompile Include="Portal.ts" />
     <TypeScriptCompile Include="Spike.ts" />
     <TypeScriptCompile Include="Player.ts" />
     <TypeScriptCompile Include="Play.ts" />
