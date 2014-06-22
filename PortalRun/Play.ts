@@ -27,7 +27,20 @@
         }
 
         update() {
+            var numPortalExists = 0;
+            this.portals.forEachExists(() => { numPortalExists++; }, null);
 
+            if (numPortalExists == 2) {
+                for (var i = 0; i < 2; i++) {
+                    var portal: PortalRun.Portal = this.portals.getAt(i);
+                    if (portal.overlap(this.player) && Math.abs(this.player.world.x - portal.world.x) <= 2) {
+                        var otherPortal = this.portals.getAt(1 - i);
+                        this.player.x = otherPortal.world.x + 3;
+                        this.player.y = otherPortal.world.y;
+                        break;
+                    }
+                }
+            }
         }
 
         shutdown() {
