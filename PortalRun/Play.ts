@@ -8,9 +8,14 @@
         spikes: Phaser.Group;
         portals: Phaser.Group;
         spikeGenerator: Phaser.TimerEvent;
+        score: number;
+        scoreText: Phaser.BitmapText;
 
         create() {
             this.background = this.add.sprite(0, 0, 'background');
+
+            this.score = 0;
+            this.scoreText = this.game.add.bitmapText(this.game.width / 2, 10, 'portalfont', this.score.toString(), 24);
 
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -19,7 +24,7 @@
             this.spikes = this.game.add.group();
             this.portals = this.game.add.group();
 
-            this.spikeGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 1.25, this.generateSpikes, this);
+            this.spikeGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 1.5, this.generateSpikes, this);
             this.spikeGenerator.timer.start();
 
             // add mouse/touch controls
@@ -41,12 +46,25 @@
                     }
                 }
             }
+
+            this.spikes.forEach((spike: PortalRun.Spike) => {
+                this.checkScore(spike);
+                this.game.physics.arcade.collide(this.player, spike, () => { this.player.kill(); }, null, this);
+            }, null);
         }
 
         shutdown() {
             this.player.destroy();
             this.spikes.destroy();
             this.background.destroy();
+        }
+
+        checkScore(spike: PortalRun.Spike) {
+            if (spike.exists && !spike.hasScored && spike.world.x <= this.player.world.x) {
+                spike.hasScored = true;
+                this.score++;
+                this.scoreText.setText(this.score.toString());
+            }
         }
 
         createPortal() {

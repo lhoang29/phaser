@@ -2,10 +2,13 @@
 
     export class Spike extends Phaser.Sprite {
 
+        hasScored: boolean;
+
         constructor(game: Phaser.Game, x: number, y: number) {
 
             super(game, 0, 0, 'spike');
 
+            this.hasScored = false;
             this.anchor.setTo(0.5, 0.5);
 
             game.add.existing(this);

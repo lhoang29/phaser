@@ -20,6 +20,7 @@
     <Content Include="app.css" />
     <Content Include="assets\background.png" />
     <Content Include="assets\dude.png" />
+    <Content Include="assets\font\font.png" />
     <Content Include="assets\portal.png" />
     <Content Include="assets\spikes.png" />
     <Content Include="index.html" />
@@ -41,6 +42,7 @@
     <TypeScriptCompile Include="Preloader.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\font\font.fnt" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
