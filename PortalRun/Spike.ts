@@ -28,7 +28,8 @@
 
         resetPosition(x: number, y: number) {
             this.reset(x, y);
-            this.body.velocity.x = -200;
+            this.body.velocity.x = Play.GlobalVelocity;
+            this.hasScored = false;
         }
     }
 

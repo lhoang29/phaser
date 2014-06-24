@@ -32,7 +32,7 @@
         }
 
         resetVelocity() {
-            this.body.velocity.x = -200;
+            this.body.velocity.x = Play.GlobalVelocity;
         }
     }
 

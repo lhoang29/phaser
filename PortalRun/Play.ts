@@ -11,6 +11,8 @@
         score: number;
         scoreText: Phaser.BitmapText;
 
+        public static GlobalVelocity: number = -200;
+
         create() {
             this.background = this.add.sprite(0, 0, 'background');
 
@@ -49,7 +51,9 @@
 
             this.spikes.forEach((spike: PortalRun.Spike) => {
                 this.checkScore(spike);
-                this.game.physics.arcade.collide(this.player, spike, () => { this.player.kill(); }, null, this);
+                this.game.physics.arcade.collide(this.player, spike, () => {
+                    this.game.state.restart(true);
+                }, null, this);
             }, null);
         }
 
