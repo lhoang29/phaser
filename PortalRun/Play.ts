@@ -96,7 +96,7 @@
         }
 
         generateSpikes() {
-            var pipeY = this.game.rnd.integerInRange(100, 600);
+            var pipeY = this.game.rnd.integerInRange(100, this.game.height);
             var spike: PortalRun.Spike = this.spikes.getFirstExists(false);
 
             if (!spike) {
