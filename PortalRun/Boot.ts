@@ -3,6 +3,7 @@
     export class Boot extends Phaser.State {
 
         preload() {
+            this.load.image('rotate', 'assets/rotate.jpg');
         }
 
         create() {
@@ -25,6 +26,7 @@
                 this.game.scale.pageAlignVertically = true;
                 this.game.scale.setShowAll();
                 this.game.scale.setScreenSize(true);
+                this.game.scale.forceOrientation(true, false, 'rotate');
             }
 
             this.game.state.start('Preloader', true, false);
