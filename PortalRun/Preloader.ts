@@ -12,6 +12,7 @@
 
             this.load.audio('deathSound', 'assets/death.mp3');
             this.load.audio('portalSound', 'assets/portal.mp3');
+            this.load.audio('warpSound', 'assets/warp.mp3');
         }
 
         create() {

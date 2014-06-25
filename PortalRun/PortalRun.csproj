@@ -26,6 +26,7 @@
     <Content Include="assets\portal.png" />
     <Content Include="assets\rotate.jpg" />
     <Content Include="assets\spikes.png" />
+    <Content Include="assets\warp.mp3" />
     <Content Include="index.html" />
     <Content Include="phaser.js" />
     <Content Include="phaser.min.js" />

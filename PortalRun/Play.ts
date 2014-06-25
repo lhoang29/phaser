@@ -12,6 +12,7 @@
         scoreText: Phaser.BitmapText;
         deathSound: Phaser.Sound;
         portalSound: Phaser.Sound;
+        warpSound: Phaser.Sound;
 
         public static GlobalVelocity: number = -200;
 
@@ -27,6 +28,7 @@
 
             this.deathSound = this.game.add.audio('deathSound', 1, false);
             this.portalSound = this.game.add.audio('portalSound', 1, false);
+            this.warpSound = this.game.add.audio('warpSound', 1, false);
 
             this.spikes = this.game.add.group();
             this.portals = this.game.add.group();
@@ -49,6 +51,7 @@
                         var otherPortal = this.portals.getAt(1 - i);
                         this.player.x = otherPortal.world.x + 3;
                         this.player.y = otherPortal.world.y;
+                        this.warpSound.play();
                         break;
                     }
                 }
