@@ -10,6 +10,8 @@
         spikeGenerator: Phaser.TimerEvent;
         score: number;
         scoreText: Phaser.BitmapText;
+        deathSound: Phaser.Sound;
+        portalSound: Phaser.Sound;
 
         public static GlobalVelocity: number = -200;
 
@@ -22,6 +24,9 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
             this.player = new PortalRun.Player(this.game, 32, this.game.world.height - 150);
+
+            this.deathSound = this.game.add.audio('deathSound', 1, false);
+            this.portalSound = this.game.add.audio('portalSound', 1, false);
 
             this.spikes = this.game.add.group();
             this.portals = this.game.add.group();
@@ -52,6 +57,7 @@
             this.spikes.forEach((spike: PortalRun.Spike) => {
                 this.checkScore(spike);
                 this.game.physics.arcade.collide(this.player, spike, () => {
+                    this.deathSound.play();
                     this.game.state.restart(true);
                 }, null, this);
             }, null);
@@ -74,6 +80,8 @@
         createPortal() {
             var px = this.game.input.x;
             var py = this.game.input.y;
+
+            this.portalSound.play();
 
             // If haven't made 2 portals then just create new one
             if (this.portals.length < 2) {

@@ -9,6 +9,9 @@
             this.load.image('spike', 'assets/spikes.png');
 
             this.load.bitmapFont('portalfont', 'assets/font/font.png', 'assets/font/font.fnt');
+
+            this.load.audio('deathSound', 'assets/death.mp3');
+            this.load.audio('portalSound', 'assets/portal.mp3');
         }
 
         create() {

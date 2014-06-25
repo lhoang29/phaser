@@ -19,9 +19,12 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="assets\background.png" />
+    <Content Include="assets\death.mp3" />
     <Content Include="assets\dude.png" />
     <Content Include="assets\font\font.png" />
+    <Content Include="assets\portal.mp3" />
     <Content Include="assets\portal.png" />
+    <Content Include="assets\rotate.jpg" />
     <Content Include="assets\spikes.png" />
     <Content Include="index.html" />
     <Content Include="phaser.js" />
