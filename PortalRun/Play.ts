@@ -13,6 +13,7 @@
         deathSound: Phaser.Sound;
         portalSound: Phaser.Sound;
         warpSound: Phaser.Sound;
+        scoreSound: Phaser.Sound;
 
         public static GlobalVelocity: number = -200;
 
@@ -29,6 +30,7 @@
             this.deathSound = this.game.add.audio('deathSound', 1, false);
             this.portalSound = this.game.add.audio('portalSound', 1, false);
             this.warpSound = this.game.add.audio('warpSound', 1, false);
+            this.scoreSound = this.game.add.audio('scoreSound', 1, false);
 
             this.spikes = this.game.add.group();
             this.portals = this.game.add.group();
@@ -70,11 +72,13 @@
             this.player.destroy();
             this.spikes.destroy();
             this.background.destroy();
+            this.scoreText.destroy();
         }
 
         checkScore(spike: PortalRun.Spike) {
             if (spike.exists && !spike.hasScored && spike.world.x <= this.player.world.x) {
                 spike.hasScored = true;
+                this.scoreSound.play();
                 this.score++;
                 this.scoreText.setText(this.score.toString());
             }
