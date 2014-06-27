@@ -2,8 +2,12 @@
 
     export class Play extends Phaser.State {
 
-        background: Phaser.Sprite;
+        backgroundSky: Phaser.TileSprite;
+        backgroundMoon: Phaser.Sprite;
+        backgroundStars: Phaser.Sprite[];
+
         player: PortalRun.Player;
+        ground: PortalRun.Ground;
         cursors: Phaser.CursorKeys;
         spikes: Phaser.Group;
         portals: Phaser.Group;
@@ -18,7 +22,23 @@
         public static GlobalVelocity: number = -200;
 
         create() {
-            this.background = this.add.sprite(0, 0, 'background');
+
+            // add background objects
+            this.backgroundSky = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'platform', 'sky');
+
+            var numStarGroups: number = this.game.rnd.integerInRange(10, 20);
+            this.backgroundStars = [];
+            for (var i = 0; i < numStarGroups; i++) {
+                var x = this.game.rnd.integerInRange(0, this.game.width);
+                var y = this.game.rnd.integerInRange(0, this.game.height);
+                var r = this.game.rnd.integerInRange(0, 4);
+                var starGroup: Phaser.Sprite = this.add.sprite(x, y, 'platform', 'stars');
+                starGroup.angle = r * 90;
+                this.backgroundStars.push(starGroup);
+            }
+
+            this.backgroundMoon = this.add.sprite(this.game.width - 50, 50, 'platform', 'moon');
+            this.backgroundMoon.anchor.setTo(0.5, 0.5);
 
             this.score = 0;
             this.scoreText = this.game.add.bitmapText(this.game.width / 2, 10, 'portalfont', this.score.toString(), 24);
@@ -26,6 +46,14 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
             this.player = new PortalRun.Player(this.game, 32, this.game.world.height - 150);
+
+            this.ground = new PortalRun.Ground(this.game, 0, this.game.height - 32, this.game.width, 32);
+
+            for (var i = 0; i < 20; i++) {
+                var grass = this.add.sprite(0, 0, 'platform', 'grass');
+                grass.x = this.game.rnd.integerInRange(0, this.game.width);
+                grass.y = this.ground.y - grass.height;
+            }
 
             this.deathSound = this.game.add.audio('deathSound', 1, false);
             this.portalSound = this.game.add.audio('portalSound', 1, false);
@@ -43,6 +71,8 @@
         }
 
         update() {
+            this.game.physics.arcade.collide(this.player, this.ground);
+
             var numPortalExists = 0;
             this.portals.forEachExists(() => { numPortalExists++; }, null);
 
@@ -52,7 +82,7 @@
                     if (portal.overlap(this.player) && Math.abs(this.player.world.x - portal.world.x) <= 2) {
                         var otherPortal = this.portals.getAt(1 - i);
                         this.player.x = otherPortal.world.x + 3;
-                        this.player.y = otherPortal.world.y;
+                        this.player.y = Math.min(otherPortal.world.y, this.ground.world.y - this.player.height);
                         this.warpSound.play();
                         break;
                     }
@@ -71,7 +101,9 @@
         shutdown() {
             this.player.destroy();
             this.spikes.destroy();
-            this.background.destroy();
+            this.backgroundSky.destroy(true);
+            this.backgroundMoon.destroy(true);
+            this.backgroundStars.forEach((starGroup: Phaser.Sprite) => { starGroup.destroy(); }, null);
             this.scoreText.destroy();
         }
 

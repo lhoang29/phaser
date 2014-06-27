@@ -3,10 +3,11 @@
     export class Preloader extends Phaser.State {
 
         preload() {
-            this.load.image('background', 'assets/background.png');
             this.load.spritesheet('player', 'assets/dude.png', 32, 48);
             this.load.spritesheet('portal', 'assets/portal.png', 102, 102);
             this.load.image('spike', 'assets/spikes.png');
+
+            this.load.atlas('platform', 'assets/platform.png', 'assets/platform.txt');
 
             this.load.bitmapFont('portalfont', 'assets/font/font.png', 'assets/font/font.fnt');
 

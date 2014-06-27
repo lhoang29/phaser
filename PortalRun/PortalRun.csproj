@@ -18,10 +18,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
-    <Content Include="assets\background.png" />
     <Content Include="assets\death.mp3" />
     <Content Include="assets\dude.png" />
     <Content Include="assets\font\font.png" />
+    <Content Include="assets\platform.png" />
+    <Content Include="assets\platform.txt" />
     <Content Include="assets\portal.mp3" />
     <Content Include="assets\portal.png" />
     <Content Include="assets\rotate.jpg" />
@@ -38,6 +39,7 @@
     <TypeScriptCompile Include="Boot.ts" />
     <TypeScriptCompile Include="Game.ts" />
     <TypeScriptCompile Include="GameOver.ts" />
+    <TypeScriptCompile Include="Ground.ts" />
     <TypeScriptCompile Include="MainMenu.ts" />
     <TypeScriptCompile Include="phaser.d.ts" />
     <TypeScriptCompile Include="Portal.ts" />
