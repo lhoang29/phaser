@@ -24,7 +24,7 @@
         create() {
 
             // add background objects
-            this.backgroundSky = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'platform', 'sky');
+            this.backgroundSky = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'sky');
 
             var numStarGroups: number = this.game.rnd.integerInRange(10, 20);
             this.backgroundStars = [];
