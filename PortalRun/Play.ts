@@ -4,7 +4,8 @@
 
         backgroundSky: Phaser.TileSprite;
         backgroundMoon: Phaser.Sprite;
-        backgroundStars: Phaser.Sprite[];
+        backgroundStars: Phaser.Group;
+        backgroundGrasses: Phaser.Group;
 
         player: PortalRun.Player;
         ground: PortalRun.Ground;
@@ -26,15 +27,15 @@
             // add background objects
             this.backgroundSky = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'sky');
 
+            this.backgroundStars = this.game.add.spriteBatch(this.game.world);
             var numStarGroups: number = this.game.rnd.integerInRange(10, 20);
-            this.backgroundStars = [];
             for (var i = 0; i < numStarGroups; i++) {
                 var x = this.game.rnd.integerInRange(0, this.game.width);
                 var y = this.game.rnd.integerInRange(0, this.game.height);
                 var r = this.game.rnd.integerInRange(0, 4);
                 var starGroup: Phaser.Sprite = this.add.sprite(x, y, 'platform', 'stars');
                 starGroup.angle = r * 90;
-                this.backgroundStars.push(starGroup);
+                this.backgroundStars.add(starGroup);
             }
 
             this.backgroundMoon = this.add.sprite(this.game.width - 50, 50, 'platform', 'moon');
@@ -49,12 +50,14 @@
 
             this.ground = new PortalRun.Ground(this.game, 0, this.game.height - 32, this.game.width, 32);
 
+            this.backgroundGrasses = this.game.add.spriteBatch(this.game.world);
             for (var i = 0; i < 20; i++) {
-                var grass = this.add.sprite(0, 0, 'platform', 'grass');
+                var grass = new Phaser.Sprite(this.game, 0, 0, 'platform', 'grass');
                 grass.x = this.game.rnd.integerInRange(0, this.game.width);
                 grass.y = this.ground.y - grass.height;
+                this.backgroundGrasses.add(grass);
             }
-
+            
             this.deathSound = this.game.add.audio('deathSound', 1, false);
             this.portalSound = this.game.add.audio('portalSound', 1, false);
             this.warpSound = this.game.add.audio('warpSound', 1, false);
@@ -101,10 +104,11 @@
         shutdown() {
             this.player.destroy();
             this.spikes.destroy();
+            this.scoreText.destroy();
             this.backgroundSky.destroy(true);
             this.backgroundMoon.destroy(true);
-            this.backgroundStars.forEach((starGroup: Phaser.Sprite) => { starGroup.destroy(); }, null);
-            this.scoreText.destroy();
+            this.backgroundStars.destroy(true);
+            this.backgroundGrasses.destroy(true);
         }
 
         checkScore(spike: PortalRun.Spike) {
