@@ -5,7 +5,7 @@
         preload() {
             this.load.spritesheet('player', 'assets/dude.png', 32, 48);
             this.load.spritesheet('portal', 'assets/portal.png', 102, 102);
-            this.load.image('spike', 'assets/spikes.png');
+            this.load.image('asteroid', 'assets/asteroid.png');
             this.load.image('sky', 'assets/sky.png');
             this.load.image('ground', 'assets/ground.png');
 
