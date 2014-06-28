@@ -5,11 +5,11 @@
         preload() {
             this.load.spritesheet('player', 'assets/dude.png', 32, 48);
             this.load.spritesheet('portal', 'assets/portal.png', 102, 102);
-            this.load.image('asteroid', 'assets/asteroid.png');
             this.load.image('sky', 'assets/sky.png');
             this.load.image('ground', 'assets/ground.png');
 
             this.load.atlas('platform', 'assets/platform.png', 'assets/platform.txt');
+            this.load.atlasXML('asteroids', 'assets/asteroids.png', 'assets/asteroids.xml');
 
             this.load.bitmapFont('portalfont', 'assets/font/font.png', 'assets/font/font.fnt');
 
