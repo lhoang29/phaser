@@ -20,7 +20,7 @@
                     frameKey = 'asteroid2.png';
                     break;
             }
-            super(game, 0, 0, 'asteroids', frameKey);
+            super(game, x, y, 'asteroids', frameKey);
 
             this.rotateSpeed = this.game.rnd.integerInRange(1, 5);
 
@@ -36,20 +36,24 @@
             this.checkWorldBounds = true;
             this.outOfBoundsKill = true;
 
-            this.resetPosition(x, y);
+            this.resetPhysics();
         }
 
         update() {
             this.angle += this.rotateSpeed;
         }
 
-        resetPosition(x: number, y: number) {
-            this.reset(x, y);
-            this.body.velocity.x = Play.GlobalVelocity;
-            this.hasScored = false;
+        resetPhysics() {
             var randomNumber = this.game.rnd.integerInRange(0, 4);
+            this.body.velocity.x = Play.GlobalVelocity + (randomNumber - 2) * 25;
             this.rotateSpeed = randomNumber + 1;
             this.scale.setTo((randomNumber + 4) / 8, (randomNumber + 4) / 8);
+        }
+
+        resetPosition(x: number, y: number) {
+            this.reset(x, y);
+            this.hasScored = false;
+            this.resetPhysics();
         }
     }
 
