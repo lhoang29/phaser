@@ -2,6 +2,8 @@
 
     export class Player extends Phaser.Sprite {
 
+        public static Velocity: number = 50;
+
         constructor(game: Phaser.Game, x: number, y: number) {
 
             super(game, x, y, 'player', 0);

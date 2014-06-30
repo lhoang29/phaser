@@ -1,7 +1,6 @@
 ﻿module PortalRun {
 
     export class Play extends Phaser.State {
-        playerVelocity: number = 50;
 
         backgroundSky: Phaser.TileSprite;
         backgroundMoon: Phaser.Sprite;
@@ -50,11 +49,11 @@
             this.player = new PortalRun.Player(this.game, 32, this.game.world.height - 150);
 
             this.ground = new PortalRun.Ground(this.game, 0, this.game.height - 32, this.game.width, 32);
-            this.ground.autoScroll(-this.playerVelocity, 0);
+            this.ground.autoScroll(-Player.Velocity, 0);
 
             this.backgroundGrass = this.game.add.tileSprite(0, 0, this.game.width, 16, 'platform', 'grass');
             this.backgroundGrass.y = this.ground.y - this.backgroundGrass.height;
-            this.backgroundGrass.autoScroll(-this.playerVelocity, 0);
+            this.backgroundGrass.autoScroll(-Player.Velocity, 0);
 
             this.deathSound = this.game.add.audio('deathSound', 1, false);
             this.portalSound = this.game.add.audio('portalSound', 1, false);
