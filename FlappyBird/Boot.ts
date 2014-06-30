@@ -21,10 +21,10 @@
             }
             else {
                 //  Same goes for mobile settings.
-
-                this.game.scale.setScreenSize(true);
+                this.game.scale.pageAlignHorizontally = true;
+                this.game.scale.pageAlignVertically = true;
                 this.game.scale.setShowAll();
-                this.game.scale.refresh();
+                this.game.scale.setScreenSize(true);
             }
 
             this.game.state.start('Preloader', true, false);
