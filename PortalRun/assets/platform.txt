@@ -11,11 +11,5 @@
 		"frame": {"x":160,"y":32,"w":96,"h":32},
 		"spriteSourceSize": {"x":0,"y":0,"w":96,"h":32},
 		"sourceSize": {"w":96,"h":32}
-	},
-	{
-		"filename": "grass", "rotated": false,"trimmed": false,
-		"frame": {"x":160,"y":80,"w":96,"h":16},
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":16},
-		"sourceSize": {"w":32,"h":16}
 	}]
 }

@@ -7,6 +7,7 @@
             this.load.spritesheet('portal', 'assets/portal.png', 102, 102);
             this.load.image('sky', 'assets/sky.png');
             this.load.image('ground', 'assets/ground.png');
+            this.load.image('grass', 'assets/grass.png');
             this.load.image('startButton', 'assets/startButton.png');
 
             this.load.atlas('platform', 'assets/platform.png', 'assets/platform.txt');
