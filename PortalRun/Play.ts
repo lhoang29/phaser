@@ -93,7 +93,7 @@
                 this.checkScore(spike);
                 this.game.physics.arcade.collide(this.player, spike, () => {
                     this.deathSound.play();
-                    this.game.state.restart(true);
+                    this.game.state.start('GameOver', true, false, this.score);
                 }, null, this);
             }, null);
         }
